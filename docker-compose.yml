@@ -1,0 +1,28 @@
+version: "3"
+services:
+  api:
+    build: .
+    command: sh -c "rm -rf /api/tmp/pids/server.pid; rails s -b 0.0.0.0"
+    environment:
+      # database configuration for development
+      DEVELOPMENT_DATABASE_URL: postgres://postgres:postgres@postgres:5432/api_development
+      # database configuration for testing
+      TEST_DATABASE_URL: postgres://postgres:postgres@postgres:5432/api_test
+      # database configuration for production
+      DATABASE_URL:
+      # Turning off warnings when running Rails with Ruby 2.7
+      # https://stackoverflow.com/a/59594760
+      RUBYOPT: '-W:no-deprecated -W:no-experimental'
+    depends_on:
+      - postgres
+    volumes:
+      - .:/api
+    ports:
+      - 3000:3000
+  postgres:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432

@@ -1,6 +1,6 @@
 # README
 
-Those initialization problems got fixed by the gem's author. You can see the details here: janko/rodauth-rails#14
+Those initialization problems got fixed by the gem's author. You can see the details here: [janko/rodauth-rails#14](https://github.com/janko/rodauth-rails/issues/14)
 
 Steps used to put this together
 
